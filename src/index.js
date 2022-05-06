@@ -1,13 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import 'bulma/css/bulma.css';
-import * as serviceWorker from './serviceWorker';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './index.css';
+import Home from './component/Home.jsx';
+import LoginSignUp from './component/LogInSignUp.jsx';
+import CreateJob from './component/CreateJob.jsx';
+import EditJob from './component/EditJob.jsx';
+import SearchJob from './component/SearchJob.jsx';
+import SearchResult from './component/SearchResult.jsx'
+import JobDetail from './component/JobDetail';
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
+import Favorites from './component/Favorites.jsx';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+// need change (favorites)
+ReactDOM.render(
+  <Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/loginsignup" element={<LoginSignUp />} />
+      <Route path="/create" element={<CreateJob />} />
+      <Route path="/edit/:jobId" element={<EditJob />}/>
+      <Route path="/SearchJob" element={<SearchJob />}/>
+      <Route path="/searchResult/" element={<SearchResult />} />
+      <Route path="/searchResult/:job" element={<SearchResult />} />
+      <Route path="/jobDetail/:jobId" element={<JobDetail />} />
+      <Route path="/favorites/:userName" element={<Favorites />} />
+
+    </Routes> 
+  </Router>
+  ,
+  document.getElementById('root')
+);
