@@ -7,9 +7,6 @@ exports.UserSchema = new Schema({
     password: {
         type: String,
     },
-    favorites: {
-        type: Array,
-    },
     created: {
         type: Array,
     },

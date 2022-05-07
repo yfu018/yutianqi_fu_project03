@@ -47,7 +47,7 @@ export default function Navbar() {
     else {
         return (
             <div class="navbar">
-                <Link style={{textDecoration: 'none', fontSize: 36, fontWeight: "bold", color: "black"}} to="/"><div>Outdeed</div></Link>
+                <Link style={{textDecoration: 'none', fontSize: 36, fontWeight: "bold", color: "black"}} to="/"><div>Car Review</div></Link>
                 <div class="horizontal">
                     <Link style={{textDecoration: 'none', color: "black"}} to='/SearchJob'><div>Search</div></Link>
                     <Link style={{textDecoration: 'none', color: 'black'}} to="/loginsignup">Log In / Sign Up</Link>
