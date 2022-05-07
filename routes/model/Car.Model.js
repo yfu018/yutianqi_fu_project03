@@ -27,7 +27,6 @@ function updateCarById(id, car) {
     return CarModel.findByIdAndUpdate(id, car);
 }
 
-// This api is just for Favorites, again, we have no idea why this is needed but this is required to make Favorites.jsx work...
 function getAllCarsByIds(idArray) {
     return CarModel.find({ '_id': { $in: idArray } }).exec();
 }
