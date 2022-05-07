@@ -6,39 +6,32 @@ import axios from 'axios';
 
 // All good
 export default function SearchResult() {
-    const [allJobs, setAllJobs] = useState([]);
-    let { job } = useParams();
+    const [allCars, setAllCars] = useState([]);
+    let { car } = useParams();
 
-    function findAllJobs() {
-        if(job){
-            axios.get('http://localhost:8000/api/job/findJobByTitle/' + job)
-            .then(response => {
-                setAllJobs(response.data)
-            })
-            .catch(error => console.error(error));
-        }
-        else{
-            axios.get('http://localhost:8000/api/job/findAll')
+    function findAllCars() {
+        axios.get('http://localhost:3050/api/car/findAll')
                 .then(response => {
-                    setAllJobs(response.data)
+                    console.log(response)
+                    setAllCars(response.data)
                 })
                 .catch(error => console.error(error));
-        }
     }
 
-    useEffect(findAllJobs, []);
+    useEffect(findAllCars, []);
 
     return (
         <div class='vertical'>
             <Navbar />
-            <h2>Search results for: {job ? job : "All jobs"} ({allJobs.length} jobs found)</h2>
+            <h2>Search results for: {car ? car : "All cars"} ({allCars.length} cars found)</h2>
             <div>
-                {allJobs.map(job => 
-                    <Link to={{ pathname: `/jobDetail/${job._id}` }}>
+                {allCars.map(car => 
+                    <Link to={{ pathname: `/carDetail/${car._id}` }}>
                         <div class='box'>
-                            <span style={{textDecoration: 'none', fontSize: 36, fontWeight: "bold"}}>{job.title}</span>
-                            <span style={{textDecoration: 'none', fontSize: 18}}>{job.company}</span>
-                            <span style={{textDecoration: 'none', fontSize: 18}}>{job.location}</span>
+                            <span style={{textDecoration: 'none', fontSize: 36, fontWeight: "bold"}}>{car.brand}</span>
+                            <span style={{textDecoration: 'none', fontSize: 18}}>{car.model}</span>
+                            <span style={{textDecoration: 'none', fontSize: 18}}>{car.year}</span>
+                            <span style={{textDecoration: 'none', fontSize: 18}}>{car.description}</span>
 
                         </div>
                     </Link>

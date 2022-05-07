@@ -32,10 +32,10 @@ app.use('/api/car', car);
 app.use('/api/review', review);
 app.use('/api/user', user);
 
-// app.use(express.static(path.join(__dirname, 'build')));
-// app.get('*', function (req, res) {
-//     res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 app.listen(3050, () => {
     console.log('Starting server');
