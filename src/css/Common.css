@@ -1,57 +1,36 @@
-.vertical{
+.box {
+    color: black;
+    height: 1000px;
+    width: 800px;
     display: flex;
     flex-direction: column;
+    border: 2px solid black;
     align-items: center;
+    margin-bottom: 15px;
     justify-content: center;
-    margin-top: 120px;
-    gap: 25px;
 }
 
-.horizontal {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
+.box:hover{
+    background-color: wheat;
+    color: white;
 }
 
-h1 {
-    font-size: 64px;
-    font-weight: bold;
-    margin-bottom: 0px;
-}
-
-h3 {
-    font-weight: normal;
-}
-
-.search{
-    display: flex;
-    justify-content: center;
-    height: 30px;
-    gap: 10px;
-    margin-bottom: 50px;
-}
+box1 { grid-area: b1; }
+box2 { grid-area: b2; }
+box3 { grid-area: b3; }
+box4 { grid-area: b4; }
 
 .button{
     background-color: white;
-    color: black;
+    color: red;
     font-weight: bold;
-    height: 30px;
+    height: 45px;
     width: 100px;
 }
 
 .button:hover{
-    background-color: navy;
+    background-color: wheat;
     color: white;
-}
-
-input {
-    height: 30px;
-    width: 500px;
-}
-
-textarea {
-    height: 200px;
-    width: 500px;
 }
 
 grid-container {
@@ -60,37 +39,56 @@ grid-container {
         "b1 b2"
         "b3 b4"
     ;
-    
+    grid-template-columns: 3fr 4fr;
     grid-template-rows: 400px, 400px;
-    grid-template-columns: 2fr 3fr;
     align-items: center;
 }
 
 grid-item {
+    margin-left: 80px;
+    margin-right: 80px;
     display: flex;
-    margin-left: 100px;
-    margin-right: 100px;
 }
 
-box1 { grid-area: b1; }
-box2 { grid-area: b2; }
-box3 { grid-area: b3; }
-box4 { grid-area: b4; }
+h1 {
+    font-weight: bold;
+    font-size: 60px;
+    margin-bottom: 1px;
+}
 
-.box {
+h3 {
+    font-weight: normal;
+}
+
+.horizontal {
+    gap: 45px;
+    display: flex;
+    flex-direction: row;
+}
+
+input {
+    height: 45px;
+    width: 400px;
+}
+
+.search{
+    height: 30px;
+    margin-bottom: 45px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+textarea {
+    height: 200px;
+    width: 400px;
+}
+
+.vertical{
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
-    width: 1000px;
-    height: 120px;
-    border: 3px solid black;
     align-items: center;
-    margin-bottom: 20px;
-    color: black;
-    text-decoration: none;
     justify-content: center;
-}
-
-.box:hover{
-    background-color: navy;
-    color: white;
+    gap: 23px;
 }

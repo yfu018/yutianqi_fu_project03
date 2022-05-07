@@ -23,10 +23,6 @@ router.post("/create", auth_middleware, function (request, response) {
     return response.status(400).send("Content must be a string.");
   }
 
-//   if (typeof request.body.gameTitle !== "string") {
-//     return response.status(400).send("gameTitle must be a string.");
-//   }
-
   if (
     typeof request.body.rating !== "number" ||
     request.body.rating < 0 ||

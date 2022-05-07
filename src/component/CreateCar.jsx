@@ -4,16 +4,14 @@ import "../css/Common.css";
 import Navbar from './Navbar';
 import axios from 'axios';
 
-// All good
-export default function CreateJob () {
+export default function CreateCar () {
     const [user, setUser] = useState();
-    const [job, setJob] = useState({
-        title: '',
-        company: '',
-        location: '',
+    const [car, setCar] = useState({
+        brand: '',
+        model: '',
+        year: '',
         description: '',
-        email: '',
-        website: '',
+        date: '',
     });
 
     let navigate = useNavigate();
@@ -33,63 +31,63 @@ export default function CreateJob () {
             <grid-container>
                 <box1>
                     <grid-item>
-                        <h2>Job Title:</h2>
+                        <h2>Car Brand:</h2>
                     </grid-item>
                 </box1>
                 <box2>
                     <grid-item>
-                        <input value={job.title} onChange={(e) => {
+                        <input value={car.brand} onChange={(e) => {
                             const title = e.target.value;
-                            setJob({
-                                ...job,
-                                title: title
+                            setCar({
+                                ...car,
+                                brand: brand
                             })
                         }}/>
                     </grid-item>
                 </box2>
                 <box3>
                     <grid-item>
-                        <h2>Company:</h2>
+                        <h2>Model: </h2>
                     </grid-item>
                 </box3>
                 <box4>
                     <grid-item>
-                        <input value={job.company} onChange={(e) => {
-                            const company = e.target.value;
-                            setJob({
-                                ...job,
-                                company: company
+                        <input value={car.model} onChange={(e) => {
+                            const model = e.target.value;
+                            setCar({
+                                ...car,
+                                model: model
                             })
                         }}/>  
                     </grid-item>
                 </box4>
                 <box5>
                     <grid-item>
-                        <h2>Location:</h2>
+                        <h2>Year: </h2>
                     </grid-item>
                 </box5>
                 <box6>
                     <grid-item>
-                        <input value={job.location} onChange={(e) => {
-                            const location = e.target.value;
-                            setJob({
-                                ...job,
-                                location: location
+                        <input value={car.year} onChange={(e) => {
+                            const year = e.target.value;
+                            setCar({
+                                ...car,
+                                year: year
                             })
                         }}/>
                     </grid-item>
                 </box6>
                 <box7>
                     <grid-item>
-                        <h2>Job Description:</h2>
+                        <h2>Description: </h2>
                     </grid-item>
                 </box7>
                 <box8>
                     <grid-item>
-                        <textarea value={job.description} onChange={(e) => {
+                        <input value={car.description} onChange={(e) => {
                             const description = e.target.value;
-                            setJob({
-                                ...job,
+                            setCar({
+                                ...car,
                                 description: description
                             })
                         }}/>
@@ -97,57 +95,41 @@ export default function CreateJob () {
                 </box8>
                 <box9>
                     <grid-item>
-                        <h2>Contact Email:</h2>
+                        <h2>Date</h2>
                     </grid-item>
                 </box9>
                 <box10>
                     <grid-item>
-                        <input value={job.email} onChange={(e) => {
-                            const email = e.target.value;
-                            setJob({
-                                ...job,
-                                email: email
-                            })
-                        }}/>
-                    </grid-item>
-                </box10>
-                <box11>
-                    <grid-item>
-                        <h2>Company Website: (Optional)</h2>
-                    </grid-item>
-                </box11>
-                <box12>
-                    <grid-item>
-                    <input value={job.website} onChange={(e) => {
-                        const website = e.target.value;
-                        setJob({
-                            ...job,
-                            website: website
+                    <input value={car.date} onChange={(e) => {
+                        const date = e.target.value;
+                        setCar({
+                            ...car,
+                            date: date
                         })
                     }}/>
                     </grid-item>
-                </box12>
+                </box10>
 
             </grid-container>
 
             <button class = 'button' onClick={() => {
-                axios.post('/api/job/', job)
-                    .then(createJobResponse => {
-                        console.log(createJobResponse);
-                        let jobId = createJobResponse.data._id;
-                        axios.post('/api/user/addCreated/' + user + '/' + jobId)
-                            .then(userCreatedJob => {
-                                console.log(userCreatedJob);
+                axios.post('/api/car/', car)
+                    .then(createCarResponse => {
+                        console.log(createCarResponse);
+                        let carId = createCarResponse.data._id;
+                        axios.post('/api/user/addCreated/' + user + '/' + carId)
+                            .then(userCreatedCar => {
+                                console.log(userCreatedCar);
                             })
                             .catch(error => console.error(error));
-                        navigate("/jobDetail/" + jobId);
+                        navigate("/CarDetail/" + carId);
                     })
                     .catch(error => {
                         console.error(error)
-                        alert("All information (except for company website) are required!");
+                        alert("Information Missing");
                     });
                 
-            }}>Create Job</button>
+            }}>Create Car</button>
         </div>
     )
 }

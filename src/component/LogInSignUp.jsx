@@ -4,7 +4,6 @@ import "../css/Common.css";
 import Navbar from './Navbar';
 import axios from 'axios';
 
-// All good
 export default function LoginSignUp() {
     const [userData, setUserData] = useState({
         username: '',

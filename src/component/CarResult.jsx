@@ -4,7 +4,6 @@ import "../css/Common.css";
 import Navbar from './Navbar';
 import axios from 'axios';
 
-// All good
 export default function SearchResult() {
     const [allCars, setAllCars] = useState([]);
     let { car } = useParams();
@@ -23,7 +22,7 @@ export default function SearchResult() {
     return (
         <div class='vertical'>
             <Navbar />
-            <h2>Search results for: {car ? car : "All cars"} ({allCars.length} cars found)</h2>
+            <h2>Car Reviews for: {car ? car : "All cars"} ({allCars.length} cars found)</h2>
             <div>
                 {allCars.map(car => 
                     <Link to={{ pathname: `/carDetail/${car._id}` }}>
