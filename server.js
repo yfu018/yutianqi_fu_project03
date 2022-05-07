@@ -11,7 +11,7 @@ const MongoStore = require('connect-mongo');
 
 //Setup MongoDB Connection
 //const mongoString = 'mongodb://127.0.0.1/jobSearchApplication'
-const mongoString = 'mongodb+srv://Xiaochen_Ma:Mxc96301@cluster0.zdupk.mongodb.net/jobSearchApplication?retryWrites=true&w=majority'
+const mongoString = 'mongodb+srv://banana1234:banana1234@webdev.x2vwq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 mongoose.connect(mongoString, { useNewUrlParser: true })
 
 const mongoDB = mongoose.connection;
@@ -43,7 +43,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, "build", "index.html"));
-    // res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
