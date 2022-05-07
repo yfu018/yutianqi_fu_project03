@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const UserAccessor = require('./models/User.Model');
+const UserAccessor = require('./model/User.Model');
 const auth_middleware = require('./auth_middleware.js')
 
 // find users with username
@@ -28,37 +28,30 @@ router.post('/', function (req, res) {
         })
 })
 
-// find all favorites of a user
-router.get('/findAllFavorites/:username', function (req, res) {
-    return UserAccessor.findAllFavorites(req.params.username)
+// find all cars created by the user
+router.get('/findAllCarsCreated/:username', function (req, res) {
+    return UserAccessor.findAllCarsCreated(req.params.username)
         .then(userResponse => res.status(200).send(userResponse))
         .catch(error => res.status(400).send(error))
 })
 
-// add a job in favorites
-router.post('/addFavorite/:username/:jobId', function (req, res) {
-    return UserAccessor.addFavorite(req.params.username, req.params.jobId)
+// add a car to the created cars of a user
+router.post('/addCarCreated/:username/:carId', function (req, res) {
+    return UserAccessor.insertCreatedCarOfUser(req.params.username, req.params.carId)
         .then(userResponse => res.status(200).send(userResponse))
         .catch(error => res.status(400).send(error))
 })
 
-// delete a job from favorites
-router.delete('/deleteFavorite/:username/:jobId', function (req, res) {
-    return UserAccessor.deleteFavorite(req.params.username, req.params.jobId)
+// find all car reviews created by the user
+router.get('/findAllCarReviewsCreated/:username', function (req, res) {
+    return UserAccessor.findAllCarReviewsCreated(req.params.username)
         .then(userResponse => res.status(200).send(userResponse))
         .catch(error => res.status(400).send(error))
 })
 
-// find all jobs created by the user
-router.get('/findAllCreated/:username', function (req, res) {
-    return UserAccessor.findAllCreated(req.params.username)
-        .then(userResponse => res.status(200).send(userResponse))
-        .catch(error => res.status(400).send(error))
-})
-
-// add a job to the created job list of a user
-router.post('/addCreated/:username/:jobId', function (req, res) {
-    return UserAccessor.insertCreatedJobOfUser(req.params.username, req.params.jobId)
+// add a car review to the created car reviews of a user
+router.post('/addCarReviewCreated/:username/:reviewId', function (req, res) {
+    return UserAccessor.insertCreatedCarReviewOfUser(req.params.username, req.params.reviewId)
         .then(userResponse => res.status(200).send(userResponse))
         .catch(error => res.status(400).send(error))
 })
@@ -96,41 +89,5 @@ router.delete('/logout', function (req, res) {
     req.session.destroy();
     return res.status(200).send(req.session);
 })
-
-// We try to use middleware to record past steps in the following APIs, but they failed :(
-//  router.post('/favorite/:jobId', auth_middleware, function (req, res) {
-//     //postman test passed
-//     // add jobId to this user's favorite list
-//     const username = req.session.username;
-//     const jobId = req.params.jobId;
-//     return UserModel.findUserByUsernameAndUpdateFavorite(username, jobId)
-//         .then((userResponse) => {
-//             return res.status(200).send(userResponse)
-//         })
-//         .catch(error => res.status(422).send(error))
-// });
-
-// router.get('/favorite', auth_middleware, function (req, res) {
-//     // postman test passed
-//     // get a list of jobId which are favorited by the current user
-//     const username = req.session.username;
-//     return UserModel.findUserByUsername(username)
-//         .then((userResponse) => {
-//             return res.status(200).send(userResponse.favorites);
-//         })
-//         .catch(error => res.status(422).send(error))
-// });
-
-// router.delete('/favorite/:jobId', auth_middleware, function (req, res) {
-//     // postman test passed
-//     // delete the jobId from the favorite list of the current user
-//     const username = req.session.username;
-//     const jobId = req.params.jobId;
-//     return UserModel.findUserByUsernameAndDeleteFavorite(username, jobId)
-//         .then((userResponse) => {
-//             return res.status(200).send(userResponse)
-//         })
-//         .catch(error => res.status(422).send(error))
-// });
 
 module.exports = router;

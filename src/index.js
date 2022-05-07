@@ -1,25 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
+import CarResult from './component/CarResult.jsx'
+import LogInSignUp from './component/LogInSignUp.jsx';
+import CreateCar from './component/CreateCar.jsx';
+import CarDetail from './component/CarDetail';
+import EditReview from './component/EditReview.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginSignUp from './component/LogInSignUp.jsx';
-import CreateJob from './component/CreateJob.jsx';
-import EditJob from './component/EditJob.jsx';
-import SearchJob from './component/SearchJob.jsx';
-import EntryResult from './component/EntryResult.jsx'
-import JobDetail from './component/JobDetail';
 
 
 
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<EntryResult />} />
-      <Route path="/loginsignup" element={<LoginSignUp />} />
-      <Route path="/create" element={<CreateJob />} />
-      <Route path="/edit/:jobId" element={<EditJob />}/>
-      <Route path="/SearchJob" element={<SearchJob />}/>
-      <Route path="/jobDetail/:jobId" element={<JobDetail />} />
+      <Route path="/home" element={<CarResult />} />
+      <Route path="/LogInSignUp" element={<LogInSignUp />} />
+      <Route path="/createCar" element={<CreateCar />} />
+      <Route path="/carDetail/:carId" element={<CarDetail/>} />
+      <Route path="/edit/:reviewId" element={<EditReview />}/>
+      <Route path="/" element={<Navigate replace to="/home" />} />
     </Routes> 
   </Router>
   ,

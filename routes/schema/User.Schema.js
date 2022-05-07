@@ -7,7 +7,10 @@ exports.UserSchema = new Schema({
     password: {
         type: String,
     },
-    created: {
+    carsCreated: {
+        type: Array,
+    },
+    reviewsCreated: {
         type: Array,
     },
 }, { collection: 'users' });
